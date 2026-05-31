@@ -3,10 +3,14 @@ import { useEffect, useState } from 'react'
 import WorkoutCard from '../components/WorkoutCard'
 import { useAuth } from '../context/AuthContext'
 import { getWorkoutSummary } from '../services/reportService'
-import { getWorkoutPlans } from '../services/workoutService'
 import type { WorkoutSummaryReport } from '../types/reports'
 import type { WorkoutPlan } from '../types/workout'
 import CreateWorkoutForm from '../components/CreateWorkoutForm'
+import {
+  deleteWorkoutPlan,
+  getWorkoutPlans,
+} from '../services/workoutService'
+
 
 function DashboardPage() {
   const { fullName, logout } = useAuth()
@@ -35,6 +39,13 @@ function DashboardPage() {
 
   function handleWorkoutCreated(workout: WorkoutPlan) {
   setWorkouts((currentWorkouts) => [workout, ...currentWorkouts])
+}
+async function handleDeleteWorkout(id: number) {
+  await deleteWorkoutPlan(id)
+
+  setWorkouts((currentWorkouts) =>
+    currentWorkouts.filter((workout) => workout.id !== id)
+  )
 }
 
   return (
@@ -74,7 +85,11 @@ function DashboardPage() {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {workouts.map((workout) => (
-                    <WorkoutCard key={workout.id} workout={workout} />
+                    <WorkoutCard
+                      key={workout.id}
+                      workout={workout}
+                      onDelete={handleDeleteWorkout}
+                    />
                   ))}
                 </div>
               )}
