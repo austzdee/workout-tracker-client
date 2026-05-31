@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
-
 import CreateExerciseForm from './CreateExerciseForm'
-import { getExercises } from '../services/exerciseService'
 import type { Exercise } from '../types/exercise'
+import {
+  deleteExercise,
+  getExercises,
+} from '../services/exerciseService'
 
 type Props = {
   workoutPlanId: number
@@ -34,6 +36,16 @@ function ExerciseList({ workoutPlanId }: Props) {
     ])
   }
 
+  async function handleDeleteExercise(exerciseId: number) {
+  // Delete from backend first
+  await deleteExercise(workoutPlanId, exerciseId)
+
+  // Then update UI state
+  setExercises((currentExercises) =>
+    currentExercises.filter((exercise) => exercise.id !== exerciseId)
+  )
+}
+
   return (
     <div className="mt-5">
       {loading ? (
@@ -51,12 +63,21 @@ function ExerciseList({ workoutPlanId }: Props) {
               key={exercise.id}
               className="bg-zinc-800 rounded-xl p-3 border border-zinc-700"
             >
-              <p className="font-semibold">
-                {exercise.name}
-              </p>
+              <div className="flex items-center justify-between gap-3">
+                <p className="font-semibold">
+                  {exercise.name}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteExercise(exercise.id)}
+                  className="text-sm text-red-400 hover:text-red-300"
+                >
+                  Delete
+                </button>
+              </div>
 
               <p className="text-sm text-zinc-400">
-                {exercise.sets} sets × {exercise.reps} reps · {exercise.weight}kg
+                {exercise.sets} sets  {exercise.reps} reps · {exercise.weight}kg
               </p>
             </div>
           ))}

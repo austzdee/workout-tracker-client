@@ -30,3 +30,13 @@ export async function createExercise(
 
   return response.data
 }
+
+// Delete an exercise from a specific workout plan
+export async function deleteExercise(
+  workoutPlanId: number,
+  exerciseId: number
+): Promise<void> {
+  await api.delete(
+    `/WorkoutPlans/${workoutPlanId}/exercises/${exerciseId}`
+  )
+}
