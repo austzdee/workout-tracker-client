@@ -1,4 +1,5 @@
 import type { WorkoutPlan } from '../types/workout'
+import ExerciseList from './ExerciseList'
 
 type Props = {
   workout: WorkoutPlan
@@ -17,7 +18,7 @@ function WorkoutCard({ workout, onDelete }: Props) {
       <p className="text-sm text-zinc-500 mt-4">
         {new Date(workout.scheduledDate).toLocaleString()}
       </p>
-
+        <ExerciseList workoutPlanId={workout.id} /> 
       <button
         onClick={() => onDelete(workout.id)}
         className="mt-5 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm font-semibold"
