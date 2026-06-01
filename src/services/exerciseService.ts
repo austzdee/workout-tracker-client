@@ -31,7 +31,21 @@ export async function createExercise(
   return response.data
 }
 
-// Delete an exercise from a specific workout plan
+// Update an existing exercise
+export async function updateExercise(
+  workoutPlanId: number,
+  exerciseId: number,
+  data: CreateExerciseRequest
+): Promise<Exercise> {
+  const response = await api.put<Exercise>(
+    `/WorkoutPlans/${workoutPlanId}/exercises/${exerciseId}`,
+    data
+  )
+
+  return response.data
+}
+
+// Delete an exercise
 export async function deleteExercise(
   workoutPlanId: number,
   exerciseId: number
