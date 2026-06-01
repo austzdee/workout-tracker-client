@@ -48,6 +48,17 @@ async function handleDeleteWorkout(id: number) {
   )
 }
 
+// Synchronize updated workout in dashboard state
+function handleWorkoutUpdated(updatedWorkout: WorkoutPlan) {
+  setWorkouts((currentWorkouts) =>
+    currentWorkouts.map((workout) =>
+      workout.id === updatedWorkout.id
+        ? updatedWorkout
+        : workout
+    )
+  )
+}
+
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-8">
       <div className="max-w-6xl mx-auto">
@@ -89,6 +100,7 @@ async function handleDeleteWorkout(id: number) {
                       key={workout.id}
                       workout={workout}
                       onDelete={handleDeleteWorkout}
+                      onUpdated={handleWorkoutUpdated}
                     />
                   ))}
                 </div>
