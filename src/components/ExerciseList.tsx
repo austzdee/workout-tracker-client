@@ -77,7 +77,7 @@ function ExerciseList({ workoutPlanId }: Props) {
               </div>
 
               <p className="text-sm text-zinc-400">
-                {exercise.sets} sets  {exercise.reps} reps · {exercise.weight}kg
+                {exercise.sets} sets × {exercise.reps} reps · {exercise.weight}kg
               </p>
             </div>
           ))}
