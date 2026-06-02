@@ -32,7 +32,7 @@ function DashboardPage() {
         ]);
 
         setSummary(summaryData);
-        setWorkouts(workoutData);
+        setWorkouts(Array.isArray(workoutData) ? workoutData : []);
       } finally {
         setLoading(false);
       }
