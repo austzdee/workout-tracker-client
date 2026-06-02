@@ -9,6 +9,7 @@ import { getWorkoutPlans } from "../services/workoutService";
 import type { WorkoutSummaryReport } from "../types/reports";
 import type { WorkoutPlan } from "../types/workout";
 
+
 function DashboardPage() {
   // Read the authenticated user's display name from the global auth context.
   const { fullName } = useAuth();

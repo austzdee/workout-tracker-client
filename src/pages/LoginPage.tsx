@@ -1,53 +1,63 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import { loginUser } from '../services/authService'
-import { useAuth } from '../context/AuthContext'
+import { loginUser } from "../services/authService";
+import { useAuth } from "../context/AuthContext";
 
 function LoginPage() {
-  const navigate = useNavigate()
-  const { login } = useAuth()
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(
+    e: React.FormEvent<HTMLFormElement>
+  ) {
+    e.preventDefault();
 
     try {
-      setLoading(true)
-      setError('')
+      setLoading(true);
+      setError("");
 
       const response = await loginUser({
         email,
         password,
-      })
+      });
 
-      login(response.token, response.fullName)
-     navigate('/dashboard')
+      // Save authenticated user data globally
+      login(response.token, response.fullName);
 
-      navigate('/dashboard')
+      // Redirect authenticated user
+      navigate("/dashboard");
     } catch (err) {
-      setError('Invalid email or password.')
-      console.error(err)
+      console.error(err);
+
+      setError("Invalid email or password.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-zinc-900 p-8 rounded-2xl shadow-2xl">
-        <h1 className="text-4xl font-bold mb-8 text-center">
+      <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 p-8 rounded-2xl shadow-2xl">
+        <h1 className="text-4xl font-bold mb-2 text-center">
           Login
         </h1>
+
+        <p className="text-zinc-400 text-center mb-8">
+          Sign in to access your workout dashboard.
+        </p>
 
         <form
           onSubmit={handleSubmit}
           className="space-y-5"
         >
+          {/* Email */}
           <div>
             <label className="block mb-2 text-sm text-zinc-400">
               Email
@@ -63,6 +73,7 @@ function LoginPage() {
             />
           </div>
 
+          {/* Password */}
           <div>
             <label className="block mb-2 text-sm text-zinc-400">
               Password
@@ -78,23 +89,36 @@ function LoginPage() {
             />
           </div>
 
+          {/* Error message */}
           {error && (
             <p className="text-red-500 text-sm">
               {error}
             </p>
           )}
 
+          {/* Submit button */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 transition-colors p-3 rounded-lg font-semibold"
+            className="w-full bg-blue-600 hover:bg-blue-700 transition-colors p-3 rounded-lg font-semibold disabled:opacity-60"
           >
-            {loading ? 'Signing in...' : 'Login'}
+            {loading ? "Signing in..." : "Login"}
           </button>
         </form>
+
+        {/* Register link */}
+        <p className="text-zinc-400 text-sm mt-6 text-center">
+          Don&apos;t have an account?{" "}
+          <Link
+            to="/register"
+            className="text-blue-400 hover:text-blue-300 font-medium"
+          >
+            Register
+          </Link>
+        </p>
       </div>
     </div>
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;
