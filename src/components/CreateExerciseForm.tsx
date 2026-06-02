@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { createExercise } from '../services/exerciseService'
 import type { Exercise } from '../types/exercise'
+import type { FormEvent } from "react";
 
 type Props = {
   workoutPlanId: number
@@ -18,7 +19,7 @@ function CreateExerciseForm({
   const [weight, setWeight] = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     try {

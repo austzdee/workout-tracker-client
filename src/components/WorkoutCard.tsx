@@ -8,7 +8,7 @@ import type { WorkoutPlan } from "../types/workout";
 type Props = {
   workout: WorkoutPlan;
   onDelete: (id: number) => void;
-  onUpdated: (workout: WorkoutPlan) => void;
+ 
 };
 
 function WorkoutCard({ workout, onDelete }: Props) {

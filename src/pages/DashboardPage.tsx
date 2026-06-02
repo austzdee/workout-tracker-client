@@ -44,7 +44,6 @@ function DashboardPage() {
   function handleWorkoutCreated(workout: WorkoutPlan) {
     setWorkouts((currentWorkouts) => [workout, ...currentWorkouts]);
   }
-
   async function handleDeleteWorkout(id: number) {
     await deleteWorkoutPlan(id);
 
@@ -52,15 +51,6 @@ function DashboardPage() {
       currentWorkouts.filter((workout) => workout.id !== id)
     );
   }
-
-  function handleWorkoutUpdated(updatedWorkout: WorkoutPlan) {
-    setWorkouts((currentWorkouts) =>
-      currentWorkouts.map((workout) =>
-        workout.id === updatedWorkout.id ? updatedWorkout : workout
-      )
-    );
-  }
-
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-8">
       <div className="max-w-6xl mx-auto">
@@ -112,7 +102,6 @@ function DashboardPage() {
                       key={workout.id}
                       workout={workout}
                       onDelete={handleDeleteWorkout}
-                      onUpdated={handleWorkoutUpdated}
                     />
                   ))}
                 </div>
