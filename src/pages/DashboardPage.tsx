@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-
 import WorkoutCard from "../components/WorkoutCard";
 import CreateWorkoutForm from "../components/CreateWorkoutForm";
-
 import { useAuth } from "../context/AuthContext";
 
 import { getWorkoutSummary } from "../services/reportService";
-import {
-  deleteWorkoutPlan,
-  getWorkoutPlans,
-} from "../services/workoutService";
+import { getWorkoutPlans } from "../services/workoutService";
 
 import type { WorkoutSummaryReport } from "../types/reports";
 import type { WorkoutPlan } from "../types/workout";
@@ -18,9 +13,12 @@ function DashboardPage() {
   // Read the authenticated user's display name from the global auth context.
   const { fullName } = useAuth();
 
+
+  
   const [summary, setSummary] = useState<WorkoutSummaryReport | null>(null);
   const [workouts, setWorkouts] = useState<WorkoutPlan[]>([]);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     async function loadDashboard() {
@@ -44,12 +42,10 @@ function DashboardPage() {
   function handleWorkoutCreated(workout: WorkoutPlan) {
     setWorkouts((currentWorkouts) => [workout, ...currentWorkouts]);
   }
-  async function handleDeleteWorkout(id: number) {
-    await deleteWorkoutPlan(id);
-
-    setWorkouts((currentWorkouts) =>
-      currentWorkouts.filter((workout) => workout.id !== id)
-    );
+  function handleDeleteWorkout(id: number) {
+  setWorkouts((currentWorkouts) =>
+    currentWorkouts.filter((workout) => workout.id !== id)
+  );
   }
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-8">
