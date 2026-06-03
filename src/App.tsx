@@ -8,6 +8,7 @@ import DashboardPage from "./pages/DashboardPage";
 import CreateWorkoutPage from "./pages/CreateWorkoutPage";
 import EditWorkoutPage from "./pages/EditWorkoutPage";
 import WorkoutDetailsPage from "./pages/WorkoutDetailsPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
 
       <main className="min-h-screen bg-gray-50">
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/" element={<Navigate to="/home" replace />} />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/home" element={<HomePage />} />
 
           <Route
             path="/dashboard"
