@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/DashboardNavbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -15,51 +15,48 @@ function App() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-gray-50">
-        <Routes>
-          <Route path="/" element={<Navigate to="/home" replace />} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
 
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/home" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <DashboardPage />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/create-workout"
-            element={
-              <ProtectedRoute>
-                <CreateWorkoutPage />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/create-workout"
+          element={
+            <ProtectedRoute>
+              <CreateWorkoutPage />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/workouts/:id"
-            element={
-              <ProtectedRoute>
-                <WorkoutDetailsPage />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/workouts/:id"
+          element={
+            <ProtectedRoute>
+              <WorkoutDetailsPage />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/workouts/:id/edit"
-            element={
-              <ProtectedRoute>
-                <EditWorkoutPage />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </main>
+        <Route
+          path="/workouts/:id/edit"
+          element={
+            <ProtectedRoute>
+              <EditWorkoutPage />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </>
   );
 }
