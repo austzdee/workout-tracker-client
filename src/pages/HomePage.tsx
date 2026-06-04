@@ -339,24 +339,43 @@ function TestimonialCard({
   name: string;
   role: string;
 }) {
+  const initials = name
+    .split(" ")
+    .map((part) => part[0])
+    .join("");
+
   return (
-    <div className="relative bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-xl hover:border-emerald-500/50 transition">
-      <div className="text-emerald-400 text-5xl leading-none mb-4">
-        “
-      </div>
+    <div className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/80 p-8 shadow-xl transition duration-300 hover:-translate-y-2 hover:border-emerald-400/60 hover:shadow-emerald-500/10">
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/10 via-transparent to-fuchsia-500/10 opacity-0 transition duration-300 group-hover:opacity-100" />
 
-      <p className="text-zinc-300 leading-relaxed">
-        {quote}
-      </p>
+      <div className="relative">
+        <div className="flex items-center justify-between mb-6">
+          <div className="h-14 w-14 rounded-full bg-emerald-400 text-zinc-950 flex items-center justify-center font-extrabold">
+            {initials}
+          </div>
 
-      <div className="mt-8 pt-6 border-t border-zinc-800">
-        <p className="font-bold text-white">
-          {name}
+          <div className="text-amber-400 text-sm tracking-widest">
+            ★★★★★
+          </div>
+        </div>
+
+        <div className="text-emerald-400 text-5xl leading-none mb-4">
+          “
+        </div>
+
+        <p className="text-zinc-300 leading-relaxed">
+          {quote}
         </p>
 
-        <p className="text-sm text-zinc-500 mt-1">
-          {role}
-        </p>
+        <div className="mt-8 pt-6 border-t border-zinc-800">
+          <p className="font-bold text-white">
+            {name}
+          </p>
+
+          <p className="text-sm text-zinc-500 mt-1">
+            {role}
+          </p>
+        </div>
       </div>
     </div>
   );
