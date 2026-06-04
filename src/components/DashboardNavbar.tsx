@@ -1,8 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const Navbar = () => {
+const DashboardNavbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const { logout, isAuthenticated } = useAuth();
 
   const handleLogout = () => {
@@ -10,7 +12,13 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  if (!isAuthenticated) {
+  const isPublicPage =
+    location.pathname === "/" ||
+    location.pathname === "/home" ||
+    location.pathname === "/login" ||
+    location.pathname === "/register";
+
+  if (!isAuthenticated || isPublicPage) {
     return null;
   }
 
@@ -51,4 +59,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default DashboardNavbar;
