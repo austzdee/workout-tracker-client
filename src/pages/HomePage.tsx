@@ -132,6 +132,51 @@ function HomePage() {
           </div>
         </section>
 
+            <section className="max-w-7xl mx-auto px-6 py-24">
+  <div className="text-center mb-14">
+    <h2 className="text-4xl font-bold">
+      Why Choose WorkoutTracker?
+    </h2>
+
+    <p className="text-zinc-400 mt-4 max-w-2xl mx-auto">
+      Designed to help you stay accountable, track progress, and build
+      long-term fitness habits.
+    </p>
+  </div>
+
+  <div className="grid md:grid-cols-3 gap-8">
+    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+      <div className="text-4xl mb-4">🏋️</div>
+      <h3 className="text-xl font-bold mb-3">
+        Structured Training
+      </h3>
+      <p className="text-zinc-400">
+        Build organized workout plans and stay focused on your goals.
+      </p>
+    </div>
+
+    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+      <div className="text-4xl mb-4">📈</div>
+      <h3 className="text-xl font-bold mb-3">
+        Measure Progress
+      </h3>
+      <p className="text-zinc-400">
+        Monitor improvements in volume, consistency, and performance.
+      </p>
+    </div>
+
+    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+      <div className="text-4xl mb-4">🎯</div>
+      <h3 className="text-xl font-bold mb-3">
+        Achieve Results
+      </h3>
+      <p className="text-zinc-400">
+        Stay motivated with a clear view of your fitness journey.
+      </p>
+    </div>
+  </div>
+</section>
+
         <section id="progress" className="bg-zinc-900 border-y border-zinc-800">
           <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-8 text-center">
              <Stat value="500+" label="Workouts Completed" />
@@ -157,7 +202,97 @@ function HomePage() {
             Create Free Account
           </Link>
         </section>
+
+          <section className="max-w-7xl mx-auto px-6 py-24">
+  <div className="text-center mb-14">
+    <p className="text-emerald-400 font-semibold mb-3">
+      Member Stories
+    </p>
+
+    <h2 className="text-4xl font-extrabold">
+      Built for People Who Want Real Progress
+    </h2>
+
+    <p className="text-zinc-400 mt-4 max-w-2xl mx-auto">
+      From structured training to consistent habits, WorkoutTracker helps users
+      stay focused and accountable.
+    </p>
+  </div>
+
+  <div className="grid md:grid-cols-3 gap-8">
+    <TestimonialCard
+      quote="WorkoutTracker helped me stay consistent with my strength sessions and finally see how much progress I was making week by week."
+      name="Amelia Carter"
+      role="Strength Training Member"
+    />
+
+    <TestimonialCard
+      quote="The workout planning and exercise tracking makes training feel organised. I know exactly what I trained, when I trained, and how I improved."
+      name="James Wilson"
+      role="Fitness Enthusiast"
+    />
+
+    <TestimonialCard
+      quote="I like how simple it is. I can create a workout, add exercises, track my routine, and stay accountable without overcomplicating things."
+      name="Sophia Bennett"
+      role="Wellness & Fitness Member"
+    />
+  </div>
+</section>
       </main>
+      <footer className="border-t border-zinc-800 bg-zinc-950">
+  <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="grid md:grid-cols-3 gap-10">
+      <div>
+        <h3 className="text-2xl font-bold text-emerald-400">
+          WorkoutTracker
+        </h3>
+
+        <p className="text-zinc-400 mt-4 max-w-sm">
+          Train smarter, track progress, and stay consistent on your fitness journey.
+        </p>
+      </div>
+
+      <div>
+        <h4 className="font-semibold mb-4">Navigation</h4>
+
+        <ul className="space-y-2 text-zinc-400">
+          <li>
+            <Link to="/" className="hover:text-emerald-400">
+              Home
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/login" className="hover:text-emerald-400">
+              Login
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/register" className="hover:text-emerald-400">
+              Register
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 className="font-semibold mb-4">Platform</h4>
+
+        <ul className="space-y-2 text-zinc-400">
+          <li>Workout Planning</li>
+          <li>Exercise Tracking</li>
+          <li>Progress Monitoring</li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="border-t border-zinc-800 mt-10 pt-6 text-center text-zinc-500 text-sm">
+      © 2026 WorkoutTracker. All rights reserved.
+    </div>
+  </div>
+</footer>
     </>
   );
 }
@@ -191,6 +326,38 @@ function FeatureCard({ title, text }: { title: string; text: string }) {
     <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-7 hover:border-emerald-500/60 transition">
       <h3 className="text-xl font-bold mb-3">{title}</h3>
       <p className="text-zinc-400">{text}</p>
+    </div>
+  );
+}
+
+function TestimonialCard({
+  quote,
+  name,
+  role,
+}: {
+  quote: string;
+  name: string;
+  role: string;
+}) {
+  return (
+    <div className="relative bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-xl hover:border-emerald-500/50 transition">
+      <div className="text-emerald-400 text-5xl leading-none mb-4">
+        “
+      </div>
+
+      <p className="text-zinc-300 leading-relaxed">
+        {quote}
+      </p>
+
+      <div className="mt-8 pt-6 border-t border-zinc-800">
+        <p className="font-bold text-white">
+          {name}
+        </p>
+
+        <p className="text-sm text-zinc-500 mt-1">
+          {role}
+        </p>
+      </div>
     </div>
   );
 }
