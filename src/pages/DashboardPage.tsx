@@ -52,7 +52,7 @@ function DashboardPage() {
   function handleDeleteWorkout(id: number) {
     // Remove deleted workout from local UI state after the child card deletes it from API.
     setWorkouts((currentWorkouts) =>
-      currentWorkouts.filter((workout) => workout.id !== id)
+      currentWorkouts.filter((workout) => workout.id !== id),
     );
   }
 
@@ -123,12 +123,43 @@ function DashboardPage() {
               />
             </section>
 
+            {/* Workout activity chart */}
+            <section className="mb-12">
+              <div className="mb-5">
+                <h2 className="text-2xl font-bold">Workout Activity</h2>
+
+                <p className="text-zinc-400 mt-2">
+                  A snapshot of your recent training consistency.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-zinc-800 bg-zinc-900/80 p-8 shadow-xl">
+                <div className="grid grid-cols-7 gap-3 items-end h-48">
+                  <div className="bg-emerald-500 rounded-t-xl h-24" />
+                  <div className="bg-emerald-500 rounded-t-xl h-16" />
+                  <div className="bg-emerald-500 rounded-t-xl h-32" />
+                  <div className="bg-emerald-500 rounded-t-xl h-20" />
+                  <div className="bg-emerald-500 rounded-t-xl h-40" />
+                  <div className="bg-emerald-500 rounded-t-xl h-14" />
+                  <div className="bg-emerald-500 rounded-t-xl h-28" />
+                </div>
+
+                <div className="grid grid-cols-7 gap-3 text-center text-xs text-zinc-500 mt-4">
+                  <span>Mon</span>
+                  <span>Tue</span>
+                  <span>Wed</span>
+                  <span>Thu</span>
+                  <span>Fri</span>
+                  <span>Sat</span>
+                  <span>Sun</span>
+                </div>
+              </div>
+            </section>
+
             {/* Workout creation form */}
             <section className="mb-12">
               <div className="mb-5">
-                <h2 className="text-2xl font-bold">
-                  Plan a New Workout
-                </h2>
+                <h2 className="text-2xl font-bold">Plan a New Workout</h2>
 
                 <p className="text-zinc-400 mt-2">
                   Create your next training session and keep your routine
@@ -143,9 +174,7 @@ function DashboardPage() {
             <section>
               <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
                 <div>
-                  <h2 className="text-2xl font-bold">
-                    Recent Workout Plans
-                  </h2>
+                  <h2 className="text-2xl font-bold">Recent Workout Plans</h2>
 
                   <p className="text-zinc-400 mt-2">
                     Review, edit, and manage your saved workout plans.
@@ -153,15 +182,14 @@ function DashboardPage() {
                 </div>
 
                 <p className="text-sm text-zinc-500">
-                  {workouts.length} workout{workouts.length === 1 ? "" : "s"} found
+                  {workouts.length} workout{workouts.length === 1 ? "" : "s"}{" "}
+                  found
                 </p>
               </div>
 
               {workouts.length === 0 ? (
                 <div className="rounded-3xl border border-dashed border-zinc-700 bg-zinc-900/60 p-10 text-center">
-                  <p className="text-xl font-bold">
-                    No workout plans yet.
-                  </p>
+                  <p className="text-xl font-bold">No workout plans yet.</p>
 
                   <p className="text-zinc-400 mt-2">
                     Create your first workout plan above to start tracking your
@@ -212,13 +240,9 @@ function DashboardCard({
 
       <p className="text-zinc-400 text-sm mt-6">{title}</p>
 
-      <h2 className="text-4xl font-extrabold mt-2 text-white">
-        {value}
-      </h2>
+      <h2 className="text-4xl font-extrabold mt-2 text-white">{value}</h2>
 
-      <p className="text-zinc-500 text-sm mt-3">
-        {description}
-      </p>
+      <p className="text-zinc-500 text-sm mt-3">{description}</p>
     </div>
   );
 }
