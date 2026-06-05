@@ -56,6 +56,23 @@ function DashboardPage() {
     );
   }
 
+  const averageExercises =
+    workouts.length === 0
+      ? 0
+      : Math.round(
+          workouts.reduce(
+            (total, workout) => total + workout.exercises.length,
+            0,
+          ) / workouts.length,
+        );
+
+  const mostActiveDay =
+    workouts.length === 0 ? "No data" : getMostActiveDay(workouts);
+
+  const workoutsThisWeek = workouts.filter((workout) =>
+    isThisWeek(new Date(workout.scheduledDate)),
+  ).length;
+
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       <div className="max-w-7xl mx-auto px-6 py-8">
@@ -157,20 +174,22 @@ function DashboardPage() {
               <div className="grid md:grid-cols-3 gap-4 mt-8">
                 <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-emerald-400/60">
                   <p className="text-2xl mb-2">🔥</p>
-                  <p className="text-2xl font-bold">5 Days</p>
-                  <p className="text-zinc-500 text-sm mt-1">Current Streak</p>
+                  <p className="text-2xl font-bold">{workoutsThisWeek}</p>
+                  <p className="text-zinc-500 text-sm mt-1">
+                    Workouts This Week
+                  </p>
                 </div>
 
                 <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-emerald-400/60">
                   <p className="text-2xl mb-2">🏆</p>
-                  <p className="text-2xl font-bold">Friday</p>
+                  <p className="text-2xl font-bold">{mostActiveDay}</p>
                   <p className="text-zinc-500 text-sm mt-1">Most Active Day</p>
                 </div>
 
                 <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-emerald-400/60">
                   <p className="text-2xl mb-2">⚡</p>
-                  <p className="text-2xl font-bold">4 / 5</p>
-                  <p className="text-zinc-500 text-sm mt-1">Weekly Goal</p>
+                  <p className="text-2xl font-bold">{averageExercises}</p>
+                  <p className="text-zinc-500 text-sm mt-1">Avg Exercises</p>
                 </div>
               </div>
             </section>
@@ -264,6 +283,41 @@ function DashboardCard({
       <p className="text-zinc-500 text-sm mt-3">{description}</p>
     </div>
   );
+}
+
+function isThisWeek(date: Date) {
+  const today = new Date();
+
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - today.getDay() + 1);
+  startOfWeek.setHours(0, 0, 0, 0);
+
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+  endOfWeek.setHours(23, 59, 59, 999);
+
+  return date >= startOfWeek && date <= endOfWeek;
+}
+
+function getMostActiveDay(workouts: WorkoutPlan[]) {
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  const counts: Record<string, number> = {
+    Sun: 0,
+    Mon: 0,
+    Tue: 0,
+    Wed: 0,
+    Thu: 0,
+    Fri: 0,
+    Sat: 0,
+  };
+
+  workouts.forEach((workout) => {
+    const day = days[new Date(workout.scheduledDate).getDay()];
+    counts[day] += 1;
+  });
+
+  return Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
 }
 
 export default DashboardPage;
