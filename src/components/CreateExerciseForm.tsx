@@ -1,63 +1,69 @@
-import { useState } from 'react'
-
-import { createExercise } from '../services/exerciseService'
-import type { Exercise } from '../types/exercise'
+import { useState } from "react";
 import type { FormEvent } from "react";
 
+import { createExercise } from "../services/exerciseService";
+import type { Exercise } from "../types/exercise";
+
 type Props = {
-  workoutPlanId: number
-  onExerciseCreated: (exercise: Exercise) => void
-}
+  workoutPlanId: number;
+  onExerciseCreated: (exercise: Exercise) => void;
+};
 
 function CreateExerciseForm({
   workoutPlanId,
   onExerciseCreated,
 }: Props) {
-  const [name, setName] = useState('')
-  const [sets, setSets] = useState('')
-  const [reps, setReps] = useState('')
-  const [weight, setWeight] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [name, setName] = useState("");
+  const [sets, setSets] = useState("");
+  const [reps, setReps] = useState("");
+  const [weight, setWeight] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      setLoading(true)
+      setLoading(true);
 
       const exercise = await createExercise(workoutPlanId, {
         name,
         sets: Number(sets),
         reps: Number(reps),
         weight: Number(weight),
-      })
+      });
 
-      onExerciseCreated(exercise)
+      onExerciseCreated(exercise);
 
-      setName('')
-      setSets('')
-      setReps('')
-      setWeight('')
+      setName("");
+      setSets("");
+      setReps("");
+      setWeight("");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-5 space-y-3 border-t border-zinc-800 pt-4"
+      className="mt-6 rounded-2xl border border-zinc-700 bg-zinc-900/80 p-5 space-y-4"
     >
-      <h4 className="font-semibold text-sm text-zinc-300">
-        Add Exercise
-      </h4>
+      <div>
+        <h4 className="font-bold text-white">
+          Add Exercise
+        </h4>
+
+        <p className="text-sm text-zinc-500 mt-1">
+          Track sets, reps, and weight for this workout.
+        </p>
+      </div>
 
       <input
         type="text"
         placeholder="Exercise name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="w-full p-2 rounded-lg bg-zinc-800 border border-zinc-700 text-sm outline-none focus:border-blue-500"
+        className="w-full p-3 rounded-xl bg-zinc-950 border border-zinc-700 text-sm outline-none focus:border-emerald-500"
         required
       />
 
@@ -67,7 +73,7 @@ function CreateExerciseForm({
           placeholder="Sets"
           value={sets}
           onChange={(e) => setSets(e.target.value)}
-          className="w-full p-2 rounded-lg bg-zinc-800 border border-zinc-700 text-sm outline-none focus:border-blue-500"
+          className="w-full p-3 rounded-xl bg-zinc-950 border border-zinc-700 text-sm outline-none focus:border-emerald-500"
           required
           min={1}
         />
@@ -77,7 +83,7 @@ function CreateExerciseForm({
           placeholder="Reps"
           value={reps}
           onChange={(e) => setReps(e.target.value)}
-          className="w-full p-2 rounded-lg bg-zinc-800 border border-zinc-700 text-sm outline-none focus:border-blue-500"
+          className="w-full p-3 rounded-xl bg-zinc-950 border border-zinc-700 text-sm outline-none focus:border-emerald-500"
           required
           min={1}
         />
@@ -87,7 +93,7 @@ function CreateExerciseForm({
           placeholder="Kg"
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
-          className="w-full p-2 rounded-lg bg-zinc-800 border border-zinc-700 text-sm outline-none focus:border-blue-500"
+          className="w-full p-3 rounded-xl bg-zinc-950 border border-zinc-700 text-sm outline-none focus:border-emerald-500"
           required
           min={0}
         />
@@ -96,12 +102,12 @@ function CreateExerciseForm({
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-semibold"
+        className="w-full bg-emerald-500 hover:bg-emerald-400 disabled:opacity-60 disabled:cursor-not-allowed text-zinc-950 px-4 py-3 rounded-xl text-sm font-bold transition"
       >
-        {loading ? 'Adding...' : 'Add Exercise'}
+        {loading ? "Adding..." : "Add Exercise"}
       </button>
     </form>
-  )
+  );
 }
 
-export default CreateExerciseForm
+export default CreateExerciseForm;

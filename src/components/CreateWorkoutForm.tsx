@@ -47,7 +47,7 @@ function CreateWorkoutForm({ onWorkoutCreated }: Props) {
         placeholder="Workout title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 outline-none focus:border-blue-500"
+        className="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 outline-none focus:border-emerald-500"
         required
       />
 
@@ -55,14 +55,14 @@ function CreateWorkoutForm({ onWorkoutCreated }: Props) {
         placeholder="Notes"
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
-        className="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 outline-none focus:border-blue-500"
+        className="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 outline-none focus:border-emerald-500"
       />
 
       <input
         type="datetime-local"
         value={scheduledDate}
         onChange={(e) => setScheduledDate(e.target.value)}
-        className="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 outline-none focus:border-blue-500"
+        className="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 outline-none focus:border-emerald-500"
         required
       />
 
