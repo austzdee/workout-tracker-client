@@ -66,13 +66,13 @@ function CreateWorkoutForm({ onWorkoutCreated }: Props) {
         required
       />
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-lg font-semibold"
-      >
-        {loading ? 'Creating...' : 'Create Workout'}
-      </button>
+    <button
+      type="submit"
+      disabled={loading}
+     className="bg-emerald-500 hover:bg-emerald-400 disabled:opacity-60 disabled:cursor-not-allowed text-zinc-950 px-5 py-3 rounded-lg font-semibold transition"
+     >
+  {loading ? "Creating..." : "Create Workout"}
+</button>
     </form>
   )
 }
