@@ -99,7 +99,7 @@ function ExerciseList({ workoutPlanId }: Props) {
           {exercises.map((exercise) => (
             <div
               key={exercise.id}
-              className="bg-zinc-800 rounded-xl p-3 border border-zinc-700"
+              className="rounded-2xl border border-zinc-700 bg-zinc-800/80 p-5 transition hover:border-emerald-400/50"
             >
               {editingExerciseId === exercise.id ? (
                 <div className="space-y-3">
@@ -112,7 +112,7 @@ function ExerciseList({ workoutPlanId }: Props) {
                         name: e.target.value,
                       })
                     }
-                    className="w-full p-2 rounded-lg bg-zinc-900 border border-zinc-700 text-sm outline-none focus:border-blue-500"
+                    className="w-full p-2 rounded-lg bg-zinc-900 border border-zinc-700 text-sm outline-none focus:border-emerald-500"
                   />
 
                   <div className="grid grid-cols-3 gap-2">
@@ -157,7 +157,7 @@ function ExerciseList({ workoutPlanId }: Props) {
                     <button
                       type="button"
                       onClick={() => handleSaveEdit(exercise.id)}
-                      className="bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-lg text-xs font-semibold"
+                      className="bg-emerald-500 hover:bg-emerald-400 text-zinc-950 px-3 py-1.5 rounded-lg text-xs font-semibold"
                     >
                       Save
                     </button>
@@ -173,33 +173,52 @@ function ExerciseList({ workoutPlanId }: Props) {
                 </div>
               ) : (
                 <>
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="font-semibold">{exercise.name}</p>
+  <div className="space-y-4">
+    <div className="flex items-start gap-4">
+      <div className="h-12 w-12 rounded-2xl bg-emerald-400/10 flex items-center justify-center text-xl">
+        💪
+      </div>
 
-                    <div className="flex gap-2">
-                      <button
-                        type="button"
-                        onClick={() => handleStartEdit(exercise)}
-                        className="text-sm text-blue-400 hover:text-blue-300"
-                      >
-                        Edit
-                      </button>
+      <div>
+        <p className="font-bold text-lg">
+          {exercise.name}
+        </p>
 
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteExercise(exercise.id)}
-                        className="text-sm text-red-400 hover:text-red-300"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
+        <div className="flex flex-wrap gap-2 mt-3">
+          <span className="px-3 py-1 rounded-full bg-zinc-900 border border-zinc-700 text-xs text-zinc-300">
+            🏋️ {exercise.sets} Sets
+          </span>
 
-                  <p className="text-sm text-zinc-400">
-                    {exercise.sets} sets × {exercise.reps} reps ·{' '}
-                    {exercise.weight}kg
-                  </p>
-                </>
+          <span className="px-3 py-1 rounded-full bg-zinc-900 border border-zinc-700 text-xs text-zinc-300">
+            🔁 {exercise.reps} Reps
+          </span>
+
+          <span className="px-3 py-1 rounded-full bg-zinc-900 border border-zinc-700 text-xs text-zinc-300">
+            ⚡ {exercise.weight}kg
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div className="flex gap-3 border-t border-zinc-700 pt-4 mt-5">
+      <button
+        type="button"
+        onClick={() => handleStartEdit(exercise)}
+        className="text-blue-400 hover:text-blue-300 font-medium transition"
+      >
+        Edit
+      </button>
+
+      <button
+        type="button"
+        onClick={() => handleDeleteExercise(exercise.id)}
+        className="text-red-400 hover:text-red-300 font-medium transition"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</>
               )}
             </div>
           ))}
