@@ -154,6 +154,25 @@ function DashboardPage() {
                   <span>Sun</span>
                 </div>
               </div>
+              <div className="grid md:grid-cols-3 gap-4 mt-8">
+                <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-emerald-400/60">
+                  <p className="text-2xl mb-2">🔥</p>
+                  <p className="text-2xl font-bold">5 Days</p>
+                  <p className="text-zinc-500 text-sm mt-1">Current Streak</p>
+                </div>
+
+                <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-emerald-400/60">
+                  <p className="text-2xl mb-2">🏆</p>
+                  <p className="text-2xl font-bold">Friday</p>
+                  <p className="text-zinc-500 text-sm mt-1">Most Active Day</p>
+                </div>
+
+                <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-emerald-400/60">
+                  <p className="text-2xl mb-2">⚡</p>
+                  <p className="text-2xl font-bold">4 / 5</p>
+                  <p className="text-zinc-500 text-sm mt-1">Weekly Goal</p>
+                </div>
+              </div>
             </section>
 
             {/* Workout creation form */}
