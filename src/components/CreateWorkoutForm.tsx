@@ -19,11 +19,11 @@ function CreateWorkoutForm({ onWorkoutCreated }: Props) {
     try {
       setLoading(true)
 
-      const workout = await createWorkoutPlan({
-        title,
-        notes,
-        scheduledDate,
-      })
+     const workout = await createWorkoutPlan({
+     title,
+     notes,
+     scheduledDate: new Date(scheduledDate).toISOString(),
+    })
 
       onWorkoutCreated(workout)
 
