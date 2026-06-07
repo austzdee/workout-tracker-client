@@ -43,7 +43,7 @@ function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center px-4">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 p-8 rounded-2xl shadow-2xl">
         <h1 className="text-4xl font-bold mb-2 text-center">
           Login
@@ -68,7 +68,7 @@ function LoginPage() {
               placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 outline-none focus:border-blue-500"
+              className="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 outline-none focus:border-emerald-500"
               required
             />
           </div>
@@ -84,7 +84,7 @@ function LoginPage() {
               placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 outline-none focus:border-blue-500"
+              className="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 outline-none focus:border-emerald-500"
               required
             />
           </div>
