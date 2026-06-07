@@ -100,7 +100,7 @@ function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 transition-colors p-3 rounded-lg font-semibold disabled:opacity-60"
+            className="w-full bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold py-3 rounded-xl transition duration-300"
           >
             {loading ? "Signing in..." : "Login"}
           </button>
@@ -111,7 +111,7 @@ function LoginPage() {
           Don&apos;t have an account?{" "}
           <Link
             to="/register"
-            className="text-blue-400 hover:text-blue-300 font-medium"
+            className="text-emerald-400 hover:text-emerald-300 font-medium transition"
           >
             Register
           </Link>
