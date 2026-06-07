@@ -14,9 +14,21 @@ https://workout-tracker-api-wwvf.onrender.com
 
 ---
 
+## Source Code
+
+### Frontend Repository
+
+https://github.com/austzdee/workout-tracker-client
+
+### Backend Repository
+
+https://github.com/austzdee/WorkoutTrackerApi
+
+---
+
 ## Overview
 
-Workout Tracker was built to help users organise and track their fitness routines through a secure and intuitive platform.
+Workout Tracker was built to help users organise and track their fitness routines through a secure and intuitive platform. 
 
 Users can:
 
@@ -28,6 +40,16 @@ Users can:
 * Access personalised workout data
 
 The application demonstrates full-stack development using modern technologies including React, TypeScript, ASP.NET Core, JWT Authentication, Entity Framework Core, and PostgreSQL.
+
+The application follows a modern client-server architecture with a React frontend, ASP.NET Core Web API backend, and PostgreSQL database hosted in the cloud using Vercel and Render.
+
+---
+
+## Problem Statement
+
+Many people struggle to maintain consistency in their fitness routines due to a lack of structured workout planning and progress tracking.
+
+Workout Tracker provides a secure platform where users can create workout plans, manage exercises, monitor training schedules, and gain visibility into their fitness activity through dashboard analytics.
 
 ---
 
@@ -60,6 +82,38 @@ The application demonstrates full-stack development using modern technologies in
 * Total Volume Lifted
 * Upcoming Workouts
 * Weekly Workout Insights
+
+---
+
+## Screenshots
+
+### Hero Section
+
+![Hero Section](screenshots/Hero_Page.png)
+
+### Features Section
+
+![Features Section](screenshots/FitTrack_Card.png)
+
+### Information Section
+
+![Information Section](screenshots/Info-section.png)
+
+### Testimonials
+
+![Testimonials](screenshots/Testimonials.png)
+
+### Dashboard Overview
+
+![Dashboard](screenshots/Dashboard.png)
+
+### Workout Activity Analytics
+
+![Workout Activity](screenshots/Dashboard_workout_activity.png)
+
+### Workout Planning
+
+![Workout Planning](screenshots/Dashboard_Plan_workoutplan.png)
 
 ---
 
@@ -191,3 +245,6 @@ https://github.com/austzdee
 
 Portfolio:
 https://austzdee.github.io/portfolio-website
+
+Live Application:
+https://workout-tracker-client-seven.vercel.app
