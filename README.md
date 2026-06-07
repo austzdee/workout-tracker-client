@@ -1,73 +1,193 @@
-# React + TypeScript + Vite
+# Workout Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack fitness tracking application that enables users to create, manage, and monitor workout plans and exercises through a secure and responsive web platform.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Frontend
 
-## React Compiler
+https://workout-tracker-client-seven.vercel.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Backend API
 
-## Expanding the ESLint configuration
+https://workout-tracker-api-wwvf.onrender.com
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Overview
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Workout Tracker was built to help users organise and track their fitness routines through a secure and intuitive platform.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Users can:
+
+* Register and log in securely
+* Create workout plans
+* Manage exercises
+* Track scheduled workouts
+* View workout analytics
+* Access personalised workout data
+
+The application demonstrates full-stack development using modern technologies including React, TypeScript, ASP.NET Core, JWT Authentication, Entity Framework Core, and PostgreSQL.
+
+---
+
+## Features
+
+### Authentication
+
+* User Registration
+* User Login
+* JWT Authentication
+* Protected Routes
+
+### Workout Management
+
+* Create Workouts
+* Update Workouts
+* Delete Workouts
+* View Workout Details
+
+### Exercise Management
+
+* Create Exercises
+* Update Exercises
+* Delete Exercises
+
+### Dashboard Analytics
+
+* Total Workouts
+* Total Exercises
+* Total Volume Lifted
+* Upcoming Workouts
+* Weekly Workout Insights
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* Axios
+* React Router
+
+### Backend
+
+* ASP.NET Core .NET 10
+* Entity Framework Core
+* JWT Authentication
+* BCrypt Password Hashing
+
+### Database
+
+* PostgreSQL
+
+### Deployment
+
+* Vercel
+* Render
+
+### Development Tools
+
+* Git
+* GitHub
+* Postman
+* Swagger / OpenAPI
+
+---
+
+## Architecture
+
+```text
+React + TypeScript Frontend
+            │
+            ▼
+ASP.NET Core .NET 10 Web API
+            │
+            ▼
+Entity Framework Core
+            │
+            ▼
+PostgreSQL Database
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Technical Challenges & Solutions
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### PostgreSQL Migration
+
+The application initially used SQLite during development and was later migrated to PostgreSQL for production deployment.
+
+Key challenges included:
+
+* Entity Framework provider migration
+* Identity column configuration
+* Migration regeneration
+* PostgreSQL DateTime handling
+* Cloud deployment configuration
+
+These issues were resolved through migration recreation, PostgreSQL identity configuration updates, and UTC date standardisation.
+
+### Authentication & Security
+
+JWT authentication was implemented to secure user-specific workout data and protect API endpoints.
+
+---
+
+## What I Learned
+
+Through this project I strengthened my skills in:
+
+* ASP.NET Core Web API development
+* React and TypeScript
+* JWT Authentication
+* PostgreSQL
+* Entity Framework Core
+* REST API design
+* Cloud deployment using Render and Vercel
+* Git-based workflows
+* Production debugging and troubleshooting
+
+---
+
+## Local Development
+
+### Frontend
+
+```bash
+git clone https://github.com/austzdee/workout-tracker-client.git
+
+cd workout-tracker-client
+
+npm install
+
+npm run dev
 ```
+
+### Backend
+
+```bash
+git clone https://github.com/austzdee/WorkoutTrackerApi.git
+
+cd WorkoutTrackerApi
+
+dotnet restore
+
+dotnet run
+```
+
+---
+
+## Author
+
+Daniel Onyekachukwu Okafor
+
+GitHub:
+https://github.com/austzdee
+
+Portfolio:
+https://austzdee.github.io/portfolio-website
